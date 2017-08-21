@@ -50,6 +50,7 @@ end
 get '/lxc/create' do
   lxd.create_container(namey.name(:common, false), alias: "ubi16")
   haml :lxc_create
+  redirect '/lxc'
 end
 
 get '/lxc/images' do
@@ -69,18 +70,18 @@ get '/lxc/images' do
   haml :lxc_images
 end
 
-get '/lxc/start/:name' do
-  response = lxd.start_container(params['name'])
+get '/lxc/start/:name' do |c|
+  response = lxd.start_container(c)
   redirect '/lxc'
 end
 
-get '/lxc/stop/:name' do
-  response = lxd.stop_container(params['name'])
+get '/lxc/stop/:name' do |c|
+  response = lxd.stop_container(c)
   redirect '/lxc'
 end
 
-get '/lxc/delete/:name' do
-  response = lxd.delete_container(params['name'])
+get '/lxc/delete/:name' do |c|
+  response = lxd.delete_container(c)
   redirect '/lxc'
 end
 
@@ -99,4 +100,10 @@ get '/vm/create' do
   `cp /home/basti/iso/template.qcow2 #{vm_disk}` ## centos preinstalled..
   vm = kvm.define_domain_xml(vm_xml)
   vm.create
+end
+
+####### Browser Console
+
+get '/console/:ip' do |a|
+  redirect "https://#{a}:4200/"
 end
