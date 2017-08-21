@@ -1,0 +1,15 @@
+%br
+%table.bordered.highlight
+  %thead
+    %tr
+      %th Name
+      %th Beschreibung
+      %th Größe
+      %th Zuletzt benutzt
+  %tbody
+    - @imgs.each do |i|
+      %tr
+        %td= i[0]
+        %td= i[1]
+        %td= i[2]
+        %td= i[3]

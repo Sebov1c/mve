@@ -1,0 +1,39 @@
+%html
+
+  %head
+  %link{:rel => "stylesheet", :href => "/css/icon_material-icons.css"}
+  %link{:rel => "stylesheet", :href => "/css/materialize.min.css"}
+  -#<script>$(document).ready(function(){setInterval(function(){ $('#autoreload').load(document.URL +  ' #autoreload');}, 10000 );});</script>
+
+  %body
+  %nav.light-blue
+    .nav-wrapper.container
+      -# %a.brand-logo{:href => "#"}
+      %ul.left.hide-on-small-only
+        %li
+          %a{:href => "/"} Home
+        %li  
+          %a{:href => "/lxc"} LXC
+        %li
+          %a{:href => "/vm"} VM
+      %ul.right.hide-on-med-and-down
+        - if active_page?("vm")
+          %li
+            %a{:href => "/vm/create"}
+              %i.material-icons add
+        - if active_page?("lxc")
+          %li
+            %a{:href => "/lxc/images"}
+              %i.material-icons storage
+          %li
+            %a{:href => "/lxc/create"}
+              %i.material-icons add
+
+  %div{:id => "autoreload"}
+    .container
+      = yield
+
+  %footer
+    %script{:language => "JavaScript", :type => "text/javascript", :src  => "/js/jquery-3.2.1.min.js"}
+    %script{:language => "JavaScript", :type => "text/javascript", :src  => "/js/materialize.min.js"}
+    <script>$('.dropdown-button').dropdown();</script>

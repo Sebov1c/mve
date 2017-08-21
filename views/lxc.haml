@@ -1,0 +1,37 @@
+%br
+%table.bordered.highlight
+  %thead
+    %tr
+      %th Name
+      %th Status
+      %th Profil
+      %th Network
+      %th Image
+      %th
+  %tbody
+    - @containers.each do |ct|
+      %tr
+        %td
+          %a{:target => "_blank", :href => "console/#{ct[0]}"}= ct[0]
+        %td
+          .switch
+            %label
+              - if ct[1] == @running_code
+                %input{:type => "checkbox", :disabled => "", :checked => ""}
+              - else
+                %input{:type => "checkbox", :disabled => ""}
+              %span.lever
+        %td= ct[2]
+        %td= ct[3]
+        %td= ct[4]
+        %td
+          %a.dropdown-button.btn{:href => "#", :"data-activates" => ct[0], :"data-beloworigin" => "true"} Optionen...
+          %ul.dropdown-content{:id => ct[0]}
+            %li
+              %a{:href => "/lxc/start/#{ct[0]}"} Start
+            %li
+              %a{:href => "/lxc/stop/#{ct[0]}"} Stop
+            %li
+              %a{:href => "/lxc/delete/#{ct[0]}"} Löschen
+
+

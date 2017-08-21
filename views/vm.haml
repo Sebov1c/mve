@@ -1,0 +1,24 @@
+%br
+%table.bordered.highlight
+  %thead
+    %tr
+      %th Name
+      %th Status
+      %th Netzwerk
+      %th Image
+  %tbody
+    - @vms.each do |vm|
+      %tr
+        %td= vm.name
+        %td
+          .switch
+            %label
+              - if vm.active?
+                %input{:type => "checkbox", :disabled => "", :checked => ""}
+              - else
+                %input{:type => "checkbox", :disabled => ""}
+              %span.lever
+        %td 3wie
+        %td 4gehts?
+
+
